@@ -4,3 +4,16 @@
 #	Description: this is the .gitignore file
 
 /MiniPM/config/database.yml
+
+#Append the default Rails generated .gitignore file
+
+/MiniPM/.bundle
+
+# Ignore all logfiles and tempfiles.
+/MiniPM/log/*
+/MiniPM/tmp/*
+!/MiniPM/log/.keep
+!/tmp/.keep
+
+# Ignore Byebug command history file.
+.byebug_history
