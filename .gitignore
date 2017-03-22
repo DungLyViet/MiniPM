@@ -1,0 +1,6 @@
+#	Author: Dung Ly Viet
+#	Date created: March 22th, 2017
+#
+#	Description: this is the .gitignore file
+
+/MiniPM/config/database.yml
