@@ -10,20 +10,33 @@
 
 		<div>
 			<%= form_for(@user) do |f| %>
-				<%= render 'common/error_messages', object: f.object %>
-				<%= f.label :name %>
-				<%= f.text_field :name %>
+				<p>
+					<%= render 'common/error_messages', object: f.object %>
+				</p>
 
-				<%= f.label :email %>
-				<%= f.text_field :email %>
+				<p>
+					<%= f.label :name %>
+					<%= f.text_field :name %>
+				</p>
 
-				<%= f.label :password %>
-				<%= f.password_field :password %>
+				<p>
+					<%= f.label :email %>
+					<%= f.text_field :email %>
+				</p>
 
-				<%= f.label :password_confirmation, "Confirmation" %>
-				<%= f.password_field :password_confirmation %>
+				<p>
+					<%= f.label :password %>
+					<%= f.password_field :password %>
+				</p>
 
-				<%= f.submit "Sign Up" %>
+				<p>
+					<%= f.label :password_confirmation, "Confirmation" %>
+					<%= f.password_field :password_confirmation %>
+				</p>
+
+				<p>
+					<%= f.submit "Sign Up" %>
+				</p>
 			<% end %>				
 		</div>
 	</body>
