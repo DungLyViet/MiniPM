@@ -1,21 +1,23 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Welcome</title>
-	</head>
-
-	<body>
-		<p>
-			<h1>Welcome to MiniPM</h1>
-		</p>
-		<p>
-			<nav>
-				<ul>
-					<li><%= link_to "Sign in", "#" %></li>
-					<li><%= link_to "Sign up", "/signup" %></li>
-					<li><%= link_to "About", "/about" %></li>
-				</ul>
-			</nav>
-		</p>
-	</body>
-</html>
+<% provide(:title, "Welcome") %>
+<% user = User.find_by_id(cookies(:user_id)) %>
+<div>
+	<p>
+		<h1>Welcome to MiniPM</h1>
+	</p>
+</div>
+<div>
+	<p>
+		<nav>
+			<ul>
+				<% if user == nil %>
+					<li><%= link_to "Sign in", signin_path %></li>
+					<li><%= link_to "Sign up", signup_path %></li>
+				<% else %>
+					<li><%= link_to "Profile", profile_path %></li>
+					<li><%= link_to "Sign out", signout_path %></li>
+				<% end %>
+				<li><%= link_to "About", about_path %></li>
+			</ul>
+		</nav>
+	</p>
+</div>
