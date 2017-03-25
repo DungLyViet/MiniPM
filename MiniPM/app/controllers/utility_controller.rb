@@ -4,4 +4,7 @@ class UtilityController < ApplicationController
 
 	def author
 	end
+
+	def error
+	end
 end

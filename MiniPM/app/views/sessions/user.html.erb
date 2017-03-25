@@ -1,0 +1,23 @@
+<% user = User.find_by_id(cookies[:user_id]) %>
+<% if user == nil %>
+<%= render 'common/error_page' %>
+<% else %>
+	<% provide(:title, "Signed in") %>
+	<div>
+		<h1>You are currently signed in as <%= user.name %> </h1>
+	</div>
+
+	<div>
+		<p>
+			<%= link_to "Home", root_path %>
+		</p>
+
+		<p>
+			<%= link_to "Profile", profile_path %>
+		</p>
+
+		<p>
+			<%= link_to "Sign out", signout_path %>
+		</p>
+	</div>
+<% end %>
