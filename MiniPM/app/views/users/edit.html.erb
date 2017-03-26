@@ -1,0 +1,54 @@
+<% if current_user == nil %>
+	<%= render 'common/error_page' %>
+<% else %>
+	<% provide(:title, "Sign up") %>
+	<div>
+		<p>
+			<h1>Sign Up</h1>
+		</p>
+	</div>
+
+	</br>
+
+	<div>
+		<nav>
+			<ul>
+				<% flash.each do |key, value| %>
+					<li><%= value %></li>
+				<% end %>
+			</ul>
+		</nav>
+	</div>
+
+	<div>
+		<%= form_for(@user, :method => :put) do |f| %>
+			<p>
+				<%= render 'common/error_messages', object: f.object %>
+			</p>
+
+			<p>
+				<%= f.label :name %>
+				<%= f.text_field :name %>
+			</p>
+
+			<p>
+				<%= f.label :email %>
+				<%= f.text_field :email %>
+			</p>
+
+			<p>
+				<%= f.label :password %>
+				<%= f.password_field :password %>
+			</p>
+
+			<p>
+				<%= f.label :password_confirmation, "Confirmation" %>
+				<%= f.password_field :password_confirmation %>
+			</p>
+
+			<p>
+				<%= f.submit "Update" %>
+			</p>
+		<% end %>				
+	</div>
+<% end %>

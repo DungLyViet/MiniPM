@@ -36,6 +36,10 @@
 		</p>
 
 		<p>
+			<%= link_to "Update", {:controller => users_path, :action => "edit", :id => current_user.id}, {:confirm => "Are you sure?", :method => :post} %>
+		</p>
+
+		<p>
 			<%= link_to "New project", createproject_path %>
 		</p>
 

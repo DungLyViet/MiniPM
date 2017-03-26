@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 	root 'welcome#index'
 
 	get '/signup', to: 'users#new'
+	post '/edituser', to: 'users#edit'
+	put '/users/:id', to: 'users#update'
 
 	get '/about', to: 'utility#about'
 	get '/author', to: 'utility#author'
