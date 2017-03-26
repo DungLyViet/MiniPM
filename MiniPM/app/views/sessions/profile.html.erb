@@ -1,8 +1,8 @@
-<% user = User.find_by_id(cookies[:user_id]) %>
-<% if user == nil %>
+<% if current_user == nil %>
 <%= render 'common/error_page' %>
 <% else %>
 	<% provide(:title, "Profile") %>
+
 	<div>
 		<p>
 			<h1>Profile</h1>
@@ -11,9 +11,21 @@
 
 	<div>
 		<p>
+			<nav>
+				<ul>
+					<% flash.each do |key, value| %>
+						<li><%= value %></li>
+					<% end %>
+				</ul>
+			</nav>
+		</p>
+	</div>
+
+	<div>
+		<p>
 			<ul>
-				<li>User name: <%= user.name %></li>
-				<li>User name: <%= user.email %></li>
+				<li>User name: <%= current_user.name %></li>
+				<li>User name: <%= current_user.email %></li>
 			</ul>
 		</p>
 	</div>
@@ -21,6 +33,14 @@
 	<div>
 		<p>
 			<%= link_to "Home", root_path %>
+		</p>
+
+		<p>
+			<%= link_to "New project", createproject_path %>
+		</p>
+
+		<p>
+			<%= link_to "All projects", listprojects_path %>
 		</p>
 
 		<p>

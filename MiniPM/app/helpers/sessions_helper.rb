@@ -28,7 +28,8 @@ module SessionsHelper
 	end
 
 	def sign_out
-		current_user = -1
+		current_user = nil
+		current_projects = nil
 		cookies.delete(:user_id)
 	end
 
@@ -39,5 +40,21 @@ module SessionsHelper
 
 	def store_url
 		session[:return_to] = request.url
+	end
+
+	def current_projects=(projects)
+		@current_projects = projects
+	end
+
+	def reset_current_projects
+		current_projects = nil
+	end
+
+	def current_projects
+		if signed_in?
+			@current_projects ||= Project.where(:user_id => cookies[:user_id])
+		else
+			@current_projects = nil
+		end	
 	end
 end

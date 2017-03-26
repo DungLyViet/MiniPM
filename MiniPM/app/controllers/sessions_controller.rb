@@ -26,7 +26,11 @@ class SessionsController < ApplicationController
 		redirect_to root_path
 	end
 
-	def profile_path
+	def profile
+
+	end
+
+	def listProjects
 
 	end
 end

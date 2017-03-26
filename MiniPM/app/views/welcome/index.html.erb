@@ -1,5 +1,4 @@
 <% provide(:title, "Welcome") %>
-<% user = User.find_by_id(cookies[:user_id]) %>
 <div>
 	<p>
 		<h1>Welcome to MiniPM</h1>
@@ -9,7 +8,7 @@
 	<p>
 		<nav>
 			<ul>
-				<% if user == nil %>
+				<% if current_user == nil %>
 					<li><%= link_to "Sign in", signin_path %></li>
 					<li><%= link_to "Sign up", signup_path %></li>
 				<% else %>

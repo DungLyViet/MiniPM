@@ -1,7 +1,25 @@
 <% provide(:title, "Author") %>
-<p>
-	<h1>Author</h1>
-</p>
-<p>
-	<a>This website is developed by Dung Ly Viet</a>
-</p>
+<div>
+	<p>
+		<h1>Author</h1>
+	</p>
+	<p>
+		<a>This website is developed by Dung Ly Viet</a>
+	</p>
+</div>
+
+<div>
+	<p>
+		<nav>
+			<ul>
+				<li><%= link_to "Home", root_path %></li>
+				<% if current_user == nil %>
+					<li><%= link_to "Sign in", signin_path %></li>
+				<% else %>
+					<li><%= link_to "Sign out", signout_path %></li>
+				<% end %>
+				<li><%= link_to "About", about_path %></li>
+			</ul>
+		</nav>
+	</p>
+</div>
