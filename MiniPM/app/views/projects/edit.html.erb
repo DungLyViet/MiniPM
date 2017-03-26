@@ -1,0 +1,47 @@
+<% if current_user == nil  %>
+<%= render 'common/error_page' %>
+<% else %>
+	<% provide(:title, "Update project") %>
+
+	<div>
+		<h1>Update Project</h1>
+	</div>
+
+	</br>
+
+	<div>
+		<nav>
+			<ul>
+				<% flash.each do |key, value| %>
+					<li><%= value %></li>
+				<% end %>
+			</ul>
+		</nav>
+	</div>
+
+	<div>
+		<%= form_for(@project, :method => :put) do |f| %>
+			<p>
+				<%= render 'common/error_messages', object: f.object %>
+			</p>
+
+			<p>
+				<%= f.label :name %>
+				<%= f.text_field :name %>
+			</p>
+
+			<p>
+				<%= f.label :description %>
+				<%= f.text_field :description %>
+			</p>
+
+			<p>
+				<%= f.hidden_field :user_id, :value => current_user.id %>
+			</p>
+
+			<p>
+				<%= f.submit "Update" %>
+			</p>
+		<% end %>
+	</div>
+<% end %>
