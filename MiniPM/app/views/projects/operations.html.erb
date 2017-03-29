@@ -1,0 +1,47 @@
+<% if current_user == nil  %>
+<%= render 'common/error_page' %>
+<% else %>
+	<% provide(:title, "Project operations") %>
+
+	<div>
+		<h1>Project operations of <%= single_project.name %></h1>
+	</div>
+
+	<div>
+		<p>
+			<nav>
+				<ul>
+					<% flash.each do |key, value| %>
+						<li><%= value %></li>
+					<% end %>
+				</ul>
+			</nav>
+		</p>
+	</div>
+
+	<div>
+		<p>
+			<%= link_to "Home", root_path %>
+			<%= link_to "Profile", profile_path %>
+			<%= link_to "Sign out", signout_path %>
+		</p>
+	</div>
+
+	<div>
+		<p>
+			<%= link_to "All users", allusers_path %>
+		</p>
+
+		<p>
+			<%= link_to "All tasks", alltasks_path %>
+		</p>
+
+		<p>
+			<%= link_to "Add user", addusertoproject_path %>
+		</p>
+
+		<p>
+			<%= link_to "Add task", createtask_path %>
+		</p>
+	<div>
+<% end %>

@@ -54,6 +54,30 @@ class ProjectsController < ApplicationController
 		@project.user = current_user
 	end
 
+	def operations
+		project = Project.find_by_id(params[:id])
+
+		if project != nil
+			assign_single_project project
+		else
+			flash[:error] = "Something is wrong"
+
+			redirect_to listprojects_path
+		end
+	end
+
+	def allUsers
+
+	end
+
+	def allTasks
+
+	end
+
+	def ownTasks
+		
+	end
+
 	private
 
 	def project_params

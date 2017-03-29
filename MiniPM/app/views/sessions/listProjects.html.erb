@@ -30,7 +30,7 @@
 	</div>
 
 	<div>
-		<p>It has <%= current_projects.length %> projects </p>
+		<p>It has <%= current_projects == nil ? 0 : current_projects.length %> projects </p>
 	</div>
 
 	<div>
@@ -52,7 +52,7 @@
 					Delete
 				</th>
 				<th>
-					Add task
+					Operations
 				</th>
 			</tr>
 			<% current_projects.each { |p| %>
@@ -73,7 +73,7 @@
 						<%= link_to "delete", {:controller => projects_path, :action => "destroy", :id => p.id}, {:confirm => "Are you sure?", :method => :delete, :remote => true} %>
 					</td>
 					<td>
-						<%= link_to "add task", "#" %>
+						<%= link_to "operations", projectoperations_path(@project, :id => p.id), :method => :post %>
 					</td>
 				</tr>
 			<% } %>

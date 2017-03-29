@@ -1,0 +1,71 @@
+<% if current_user == nil  %>
+	<%= render 'common/error_page' %>
+<% else %>
+	<% provide(:title, "Update task") %>
+
+	<div>
+		<p>
+			<h1>Update task</h1>
+		</p>
+	</div>
+
+	<div>
+		<p>
+			<nav>
+				<ul>
+					<% flash.each do |key, value| %>
+						<li><%= value %></li>
+					<% end %>
+				</ul>
+			</nav>
+		</p>
+	</div>
+
+	<div>
+		<%= form_for(@task, :method => :put) do |f| %>
+			<p>
+				<%= render 'common/error_messages', object: f.object %>
+			</p>
+
+			<p>
+				<%= f.label :name %>
+				<%= f.text_field :name %>
+			</p>
+
+			<p>
+				<%= f.label :description %>
+				<%= f.text_area :description, :size => '50x10' %>
+			</p>
+
+			<% if single_project != nil && is_project_owner(current_user.id, single_project.id) %>
+				<p>
+					<% if project_all_users != nil && project_all_users.length > 0 %>
+						<%= f.label :user_id, "User" %>
+						<%= f.select :user_id, project_all_users_to_array %>
+					<% end %>
+				</p>
+			<% end %>
+
+			<p>
+				<%= f.label :status %>
+				<%= f.select :status, [[status_to_s(TasksHelper::TASK_STATUS_ASSIGN), TasksHelper::TASK_STATUS_ASSIGN], [status_to_s(TasksHelper::TASK_STATUS_DOING), TasksHelper::TASK_STATUS_DOING], [status_to_s(TasksHelper::TASK_STATUS_DONE), TasksHelper::TASK_STATUS_DONE]] %>
+			</p>
+
+			<p>
+				<%= f.label :started_at %>
+				<%= f.date_select :started_at %>
+				<%= f.time_select :started_at, :ignore_date => true %>
+			</p>
+
+			<p>
+				<%= f.label :expired_at %>
+				<%= f.date_select :expired_at %>
+				<%= f.time_select :expired_at, :ignore_date => true %>
+			</p>
+
+			<p>
+				<%= f.submit "Update" %>
+			</p>
+		<% end %>
+	</div>
+<% end %>

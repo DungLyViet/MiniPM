@@ -1,0 +1,96 @@
+<% if current_user == nil  %>
+	<%= render 'common/error_page' %>
+<% else %>
+	<% provide(:title, "My own tasks") %>
+
+	<div>
+		<p>
+			<h1>All <%= current_user.name %>'s tasks</h1>
+		</p>
+	</div>
+
+	<div>
+		<p>
+			<nav>
+				<ul>
+					<% flash.each do |key, value| %>
+						<li><%= value %></li>
+					<% end %>
+				</ul>
+			</nav>
+		</p>
+	</div>
+
+	<div>
+		<p>
+			<%= link_to "Home", root_path %>
+			<%= link_to "Profile", profile_path %>
+			<%= link_to "Sign out", signout_path %>
+		</p>
+	</div>
+
+	<div>
+		<p>It has <%= current_own_tasks == nil ? 0 : current_own_tasks.length %> tasks</p>
+	</div>
+
+	<div>
+		<table>
+			<tr>
+				<th>
+					Id
+				</th>
+				<th>
+					Name
+				</th>
+				<th>
+					Description
+				</th>
+				<th>
+					Status
+				</th>
+				<th>
+					Started at
+				</th>
+				<th>
+					Expired at
+				</th>
+				<th>
+					User
+				</th>
+				<th>
+					Update
+				</th>
+			</tr>
+			<% if current_own_tasks != nil %>
+				<% current_own_tasks.each { |t| %>
+					<tr>
+						<td>
+							<%= t.id %>
+						</td>
+						<td>
+							<%= t.name %>
+						</td>
+						<td>
+							<%= t.description %>
+						</td>
+						<td>
+							<%= status_to_s(t.status) %>
+						</td>
+						<td>
+							<%= t.started_at %>
+						</td>
+						<td>
+							<%= t.expired_at %>
+						</td>
+						<td>
+							<%= get_user_email(t.user_id) %>
+						</td>
+						<td>
+							<%= link_to "update", {:controller => tasks_path, :action => "edit", :id => t.id, :project_id => t.project_id}, {:confirm => "Are you sure?", :method => :post} %>
+						</td>
+					</tr>
+				<% } %>
+			<% end %>
+		</table>
+	</div>
+<% end %>
